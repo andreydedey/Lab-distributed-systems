@@ -26,6 +26,8 @@ void *handle_client(void *arg) {
         return NULL;
     }
 
+    printf("[INFO] Código recebido do cliente (socket %d)\n", newsockfd);
+
     // Salva o código em um arquivo temporário
     char filename[64];
     snprintf(filename, sizeof(filename), "client_code_%d.pl", newsockfd);

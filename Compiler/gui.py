@@ -3,7 +3,7 @@ from tkinter import scrolledtext, filedialog, messagebox
 import socket
 
 SERVER_HOST = 'localhost'
-SERVER_PORT = 5000
+SERVER_PORT = 5010
 
 def enviar_codigo():
     codigo = editor.get("1.0", tk.END)
@@ -28,7 +28,7 @@ def enviar_codigo():
         messagebox.showerror("Erro", f"Falha ao conectar ou enviar código:\n{e}")
 
 def baixar_codigo():
-    codigo = editor.get("1.0", tk.END)
+    codigo = editor.get("1.0", tk.END).replace('\r', '').rstrip()
     filename = filedialog.asksaveasfilename(defaultextension=".pl", filetypes=[("Prolog files", "*.pl"), ("All files", "*.*")])
     if filename:
         try:

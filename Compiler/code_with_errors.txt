@@ -1,0 +1,27 @@
+% Código Prolog com erros propositalmente
+
+pai(joao, maria).
+pai(joao, pedro).
+pai(carlos, joao).
+
+mae(ana, maria).
+mae(ana, pedro).
+
+% Erro de sintaxe: falta de ponto final
+avo(X, Y) :-
+    pai(X, Z),
+    pai(Z, Y)    % <-- faltou o ponto final aqui
+
+% Erro de regra: uso de predicado não definido
+irmao(X, Y) :-
+    pai(P, X),
+    pai(P, Y),
+    X \= Y,
+    mae(M, X),
+    mae(M, Z),   % <-- Z não está definido corretamente
+    diferente(X, Y). % <-- 'diferente' não está definido
+
+% Consulta para forçar execução
+:- avo(X, maria), write('Avo de maria: '), write(X), nl, fail.
+:- irmao(maria, Y), write('Irmao de maria: '), write(Y), nl, fail.
+:- halt.
